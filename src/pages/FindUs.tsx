@@ -1,9 +1,29 @@
+import { useState, useEffect, FormEvent } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Breadcrumbs from '../components/Breadcrumbs';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, CheckCircle, AlertCircle } from 'lucide-react';
+import { useContactForm } from '../hooks/useContactForm';
 
 export default function FindUs() {
+  const { loading, success, error, formData, updateField, submitForm, resetForm } = useContactForm();
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (success !== null) {
+      setShowMessage(true);
+      const timer = setTimeout(() => setShowMessage(false), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const submitted = await submitForm();
+    if (submitted) {
+      setShowMessage(true);
+    }
+  };
   return (
     <div className="min-h-screen bg-white text-black selection:bg-accent selection:text-white">
       <Header />
@@ -69,44 +89,92 @@ export default function FindUs() {
       <section className="border-b-4 border-black bg-neutral-50 p-8 md:p-12 lg:p-16">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-5xl font-display uppercase mb-8">Get in Touch</h2>
-          <form className="space-y-6">
+
+          {/* Success Message */}
+          {showMessage && success && (
+            <div className="mb-6 p-4 bg-green-50 border-2 border-green-500 flex gap-3 items-start animate-in fade-in slide-in-from-top-2 duration-300">
+              <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-green-900 font-mono text-sm">
+                  ✓ {success ? 'Message sent successfully!' : 'Processing...'}
+                </p>
+                <p className="text-green-800 font-mono text-xs opacity-80 mt-1">
+                  We'll get back to you soon.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Error Message */}
+          {showMessage && error && (
+            <div className="mb-6 p-4 bg-red-50 border-2 border-red-500 flex gap-3 items-start animate-in fade-in slide-in-from-top-2 duration-300">
+              <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-red-900 font-mono text-sm">
+                  ✗ {error}
+                </p>
+                <p className="text-red-800 font-mono text-xs opacity-80 mt-1">
+                  Please try again or contact us directly.
+                </p>
+              </div>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-mono uppercase font-bold mb-2">Name</label>
               <input
                 type="text"
-                className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:border-accent"
+                value={formData.name}
+                onChange={(e) => updateField('name', e.target.value)}
+                disabled={loading}
+                className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:border-accent disabled:opacity-60 disabled:cursor-not-allowed"
                 placeholder="Your name"
+                required
               />
             </div>
             <div>
               <label className="block text-sm font-mono uppercase font-bold mb-2">Email</label>
               <input
                 type="email"
-                className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:border-accent"
+                value={formData.email}
+                onChange={(e) => updateField('email', e.target.value)}
+                disabled={loading}
+                className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:border-accent disabled:opacity-60 disabled:cursor-not-allowed"
                 placeholder="your@email.com"
+                required
               />
             </div>
             <div>
               <label className="block text-sm font-mono uppercase font-bold mb-2">Subject</label>
               <input
                 type="text"
-                className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:border-accent"
+                value={formData.subject}
+                onChange={(e) => updateField('subject', e.target.value)}
+                disabled={loading}
+                className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:border-accent disabled:opacity-60 disabled:cursor-not-allowed"
                 placeholder="How can we help?"
+                required
               />
             </div>
             <div>
               <label className="block text-sm font-mono uppercase font-bold mb-2">Message</label>
               <textarea
                 rows={6}
-                className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:border-accent resize-none"
+                value={formData.message}
+                onChange={(e) => updateField('message', e.target.value)}
+                disabled={loading}
+                className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:border-accent resize-none disabled:opacity-60 disabled:cursor-not-allowed"
                 placeholder="Tell us what's on your mind..."
+                required
               />
             </div>
             <button
               type="submit"
-              className="w-full py-4 bg-accent text-white font-display text-2xl uppercase hover:bg-black transition-colors active:translate-y-1"
+              disabled={loading}
+              className="w-full py-4 bg-accent text-white font-display text-2xl uppercase hover:bg-black transition-colors active:translate-y-1 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-accent"
             >
-              SEND MESSAGE
+              {loading ? 'SENDING...' : 'SEND MESSAGE'}
             </button>
           </form>
         </div>

@@ -1,0 +1,22 @@
+# Touch Vodka - robots.txt
+# Allow search engine crawlers to index the site
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /*.json
+Disallow: /src/
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://touchvodka.com/sitemap.xml

@@ -17,6 +17,7 @@ import Footer from './components/Footer';
 import Breadcrumbs from './components/Breadcrumbs';
 import BeaconIcon from './components/BeaconIcon';
 import SpecPanel from './components/SpecPanel';
+import { updateMetaTags, pageMetaConfigs, getProductMetaConfig, setProductSchema, setOrganizationSchema } from './utils/seoHelpers';
 
 // Page imports
 import Cocktails from './pages/Cocktails';
@@ -54,13 +55,32 @@ export default function App() {
       // Check if hash is a product detail route
       if (hash.startsWith('product/')) {
         const productId = hash.split('/')[1];
+        const product = PRODUCTS.find(p => p.id === productId);
         setProductDetailId(productId);
+        
+        // Update meta tags for product
+        if (product) {
+          const config = getProductMetaConfig(productId, product);
+          updateMetaTags(config);
+          setProductSchema(product);
+        }
+        
         window.scrollTo(0, 0);
         return;
       }
       
       setProductDetailId(null);
       setCurrentPage(hash as PageType);
+      
+      // Update meta tags based on page
+      const pageConfig = pageMetaConfigs[hash] || pageMetaConfigs.home;
+      updateMetaTags(pageConfig);
+      
+      // Set organization schema on home page
+      if (hash === 'home' || !hash) {
+        setOrganizationSchema();
+      }
+      
       window.scrollTo(0, 0);
     };
 
