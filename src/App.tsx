@@ -258,9 +258,9 @@ export default function App() {
           </div>
           <div className="p-10 border-b-2 border-black bg-neutral-50 group hover:bg-accent hover:text-white transition-colors">
             <Droplets className="w-12 h-12 mb-8 text-accent group-hover:text-white" />
-            <h3 className="text-4xl mb-4">TRIPLE DISTILLED</h3>
+            <h3 className="text-4xl mb-4">10X DISTILLED WITH CHARCOAL FILTRATION</h3>
             <p className="text-sm font-mono lowercase opacity-70 group-hover:opacity-100">
-              Refined exactly three times for exceptional clarity and smoothness, removing impurities while keeping character.
+              Refined exactly ten times for exceptional clarity and smoothness, then charcoal filtered to remove impurities while keeping character.
             </p>
           </div>
           <div className="p-10 border-r-2 border-black sm:col-span-2 bg-neutral-100 group hover:bg-accent hover:text-white transition-colors">

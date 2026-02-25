@@ -31,7 +31,7 @@ export const COCKTAILS: Cocktail[] = [
     garnish: "Orange peel twist and cherry",
     color: "#D4A574",
     baseSpirit: "Touch Artisan",
-    productIds: ["PV-001"]
+    productIds: ["TO-001"]
   },
   {
     id: "CK-002",
@@ -52,7 +52,7 @@ export const COCKTAILS: Cocktail[] = [
     garnish: "Lime wheel and pineapple wedge",
     color: "#7FDB00",
     baseSpirit: "Touch Key Lime",
-    productIds: ["PV-002"]
+    productIds: ["TO-002"]
   },
   {
     id: "CK-003",
@@ -73,7 +73,7 @@ export const COCKTAILS: Cocktail[] = [
     garnish: "Fresh raspberries and lemon twist",
     color: "#E63946",
     baseSpirit: "Touch Ruby",
-    productIds: ["PV-003"]
+    productIds: ["TO-003"]
   },
   {
     id: "CK-004",
@@ -91,7 +91,7 @@ export const COCKTAILS: Cocktail[] = [
     garnish: "Lemon twist or green olive",
     color: "#0055FF",
     baseSpirit: "Touch One",
-    productIds: ["PV-004"]
+    productIds: ["TO-004"]
   },
   {
     id: "CK-005",
@@ -112,6 +112,6 @@ export const COCKTAILS: Cocktail[] = [
     garnish: "Orange wheel and candied ginger",
     color: "#FF8C00",
     baseSpirit: "Touch Orange",
-    productIds: ["PV-005"]
+    productIds: ["TO-005"]
   }
 ];

@@ -22,14 +22,14 @@ export interface Product {
 
 export const PRODUCTS: Product[] = [
   {
-    id: "PV-001",
+    id: "TO-001",
     name: "TOUCH ARTISAN",
     tagline: "CRAFTED WITH TRADITION",
     description: "Our artisanal blend, carefully crafted using traditional distillation methods. A smooth, elegant vodka that honors time-tested techniques.",
     color: "#D4A574", // Golden Brown
     image: "/products/artisan.png",
     proof: "80 PROOF",
-    category: "Premium Distilled Spirit",
+    category: "10X Premium Distilled Spirit",
     distillationProcess: "10x Distilled",
     relatedCocktailIds: ["CK-001"],
     beaconPosition: { top: "52%", left: "52%" },
@@ -41,14 +41,14 @@ export const PRODUCTS: Product[] = [
     }
   },
   {
-    id: "PV-002",
+    id: "TO-002",
     name: "TOUCH KEY LIME",
     tagline: "TROPICAL CITRUS INFUSION",
     description: "Vibrant key lime essence perfectly balanced with our signature smooth vodka base. A refreshing tropical escape in every sip.",
     color: "#7FDB00", // Bright Lime Green
     image: "/products/keylime.png",
     proof: "80 PROOF",
-    category: "Citrus Infused Spirit",
+    category: "10X Citrus Infused Spirit",
     distillationProcess: "10x Distilled",
     relatedCocktailIds: ["CK-002"],
     beaconPosition: { top: "50%", left: "54%" },
@@ -60,14 +60,14 @@ export const PRODUCTS: Product[] = [
     }
   },
   {
-    id: "PV-003",
+    id: "TO-003",
     name: "TOUCH RUBY",
     tagline: "DEEP RED BERRY ELEGANCE",
     description: "A sophisticated blend of ruby-red berries, offering depth, complexity, and natural sweetness that elevates any cocktail.",
     color: "#E63946", // Ruby Red
     image: "/products/ruby.png",
     proof: "80 PROOF",
-    category: "Berry Infused Spirit",
+    category: "10X Berry Infused Spirit",
     distillationProcess: "10x Distilled",
     relatedCocktailIds: ["CK-003"],
     beaconPosition: { top: "48%", left: "52%" },
@@ -79,14 +79,14 @@ export const PRODUCTS: Product[] = [
     }
   },
   {
-    id: "PV-004",
+    id: "TO-004",
     name: "TOUCH ONE",
     tagline: "PURE PREMIUM EXPERIENCE",
     description: "The flagship of our collection. A premium vodka crafted for those who appreciate excellence, clarity, and uncompromising quality.",
     color: "#0055FF", // Vibrant Blue
     image: "/products/one.png",
     proof: "80 PROOF",
-    category: "Premium Distilled Spirit",
+    category: "10X Premium Distilled Spirit",
     distillationProcess: "10x Distilled + Charcoal Filtered",
     relatedCocktailIds: ["CK-004"],
     beaconPosition: { top: "52%", left: "51%" },
@@ -98,14 +98,14 @@ export const PRODUCTS: Product[] = [
     }
   },
   {
-    id: "PV-005",
+    id: "TO-005",
     name: "TOUCH ORANGE",
     tagline: "BOLD CITRUS BURST",
     description: "Bright orange notes with a vibrant kick. A bold infusion that brings energy and sophistication to the classic vodka profile.",
     color: "#FF8C00", // Dark Orange
     image: "/products/orange.png",
     proof: "80 PROOF",
-    category: "Citrus Infused Spirit",
+    category: "10X Citrus Infused Spirit",
     distillationProcess: "10x Distilled",
     relatedCocktailIds: ["CK-005"],
     beaconPosition: { top: "50%", left: "52%" },
