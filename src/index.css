@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Anton", sans-serif;
+  --font-mono: "Space Mono", monospace;
+  --color-accent: #0055FF;
+  --color-industrial: #F5F5F5;
+  --color-concrete: #E5E5E5;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-black font-mono uppercase selection:bg-accent selection:text-white;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight leading-[0.9];
+  }
+}
+
+.brutalist-border {
+  @apply border-2 border-black;
+}
+
+.grid-block {
+  @apply border border-black p-6;
+}
+
+/* Custom scrollbar for brutalist feel */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000;
+  border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0055FF;
+}
