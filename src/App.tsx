@@ -36,10 +36,12 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import CookiePolicy from './pages/CookiePolicy';
 import ProductDetail from './pages/ProductDetail';
+import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
 
 type PageType = 'home' | 'cocktails' | 'our-story' | 'collection' | 'distillery' | 'find-us' | 
   'all-products' | 'best-sellers' | 'gift-sets' | 'limited-editions' | 
-  'about-us' | 'sustainability' | 'careers' | 
+  'about-us' | 'sustainability' | 'careers' | 'blog' |
   'privacy-policy' | 'terms-of-service' | 'cookie-policy';
 
 export default function App() {
@@ -47,16 +49,35 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [isSpecPanelOpen, setIsSpecPanelOpen] = useState(false);
   const [productDetailId, setProductDetailId] = useState<string | null>(null);
+  const [blogPostSlug, setBlogPostSlug] = useState<string | null>(null);
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1) || 'home';
       
+      // Check if hash is a blog post route
+      if (hash.startsWith('blog/')) {
+        const slug = hash.split('/')[1];
+        setBlogPostSlug(slug);
+        setProductDetailId(null);
+        
+        // Update meta tags for blog post
+        updateMetaTags({
+          title: 'Blog Post',
+          description: 'Read our latest blog post',
+          url: window.location.href,
+        });
+        
+        window.scrollTo(0, 0);
+        return;
+      }
+
       // Check if hash is a product detail route
       if (hash.startsWith('product/')) {
         const productId = hash.split('/')[1];
         const product = PRODUCTS.find(p => p.id === productId);
         setProductDetailId(productId);
+        setBlogPostSlug(null);
         
         // Update meta tags for product
         if (product) {
@@ -69,6 +90,7 @@ export default function App() {
         return;
       }
       
+      setBlogPostSlug(null);
       setProductDetailId(null);
       setCurrentPage(hash as PageType);
       
@@ -91,7 +113,11 @@ export default function App() {
   }, []);
 
   // Route to appropriate page component
+  if (blogPostSlug) {
+    return <BlogDetail slug={blogPostSlug} onBack={() => window.location.hash = '#blog'} />;
+  }
   if (productDetailId) return <ProductDetail productId={productDetailId} />;
+  if (currentPage === 'blog') return <Blog onSelectPost={(slug) => window.location.hash = `#blog/${slug}`} />;
   if (currentPage === 'cocktails') return <Cocktails />;
   if (currentPage === 'our-story') return <OurStory />;
   if (currentPage === 'collection') return <Collection />;

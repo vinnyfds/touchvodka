@@ -24,6 +24,6 @@
     "noEmit": true,
     "types": ["node"]
   },
-  "include": ["src/**/*", "src/**/*.tsx"],
+  "include": ["src/**/*", "src/**/*.tsx", "src/**/*.mdx"],
   "exclude": ["node_modules", "dist", "server"]
 }

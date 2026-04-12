@@ -11,7 +11,7 @@ interface HeaderProps {
 export default function Header({ currentPage = 'home', onNavClick }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navItems = ['Our Story', 'Collection', 'Distillery', 'Cocktails', 'Find Us'];
+  const navItems = ['Our Story', 'Collection', 'Distillery', 'Cocktails', 'Blog', 'Find Us'];
 
   const handleNavClick = (item: string) => {
     setIsMenuOpen(false);
