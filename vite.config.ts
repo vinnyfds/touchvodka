@@ -23,6 +23,7 @@ export default defineConfig(({mode}) => {
     ],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+      'global.Buffer': `{from(str,encoding='utf8'){if(typeof str==='string')return{toString(){return str},[Symbol.toStringTag]:'Buffer'};return str},isBuffer(obj){return obj&&obj[Symbol.toStringTag]==='Buffer'}}`,
     },
     resolve: {
       alias: {
