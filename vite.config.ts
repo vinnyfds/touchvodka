@@ -7,10 +7,25 @@ import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
+const bufferPolyfill = {
+  name: 'buffer-polyfill',
+  resolveId(id) {
+    if (id === 'virtual-buffer-polyfill') {
+      return id;
+    }
+  },
+  load(id) {
+    if (id === 'virtual-buffer-polyfill') {
+      return `globalThis.Buffer = globalThis.Buffer || {from:(s)=>({toString:()=>s,[Symbol.toStringTag]:"Buffer"}),isBuffer:(o)=>o&&o[Symbol.toStringTag]==="Buffer"}}`;
+    }
+  },
+};
+
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     plugins: [
+      bufferPolyfill,
       mdx({
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
@@ -23,7 +38,6 @@ export default defineConfig(({mode}) => {
     ],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      'global.Buffer': 'globalThis.Buffer||{from:(s)=>({toString:()=>s,[Symbol.toStringTag]:"Buffer"}),isBuffer:(o)=>o&&o[Symbol.toStringTag]==="Buffer"}',
     },
     resolve: {
       alias: {
