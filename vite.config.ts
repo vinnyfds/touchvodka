@@ -16,7 +16,7 @@ const bufferPolyfill = {
   },
   load(id) {
     if (id === 'virtual-buffer-polyfill') {
-      return `globalThis.Buffer = globalThis.Buffer || {from:(s)=>({toString:()=>s,[Symbol.toStringTag]:"Buffer"}),isBuffer:(o)=>o&&o[Symbol.toStringTag]==="Buffer"}}`;
+      return `globalThis.Buffer = globalThis.Buffer || {from:(s)=>({toString:()=>s,[Symbol.toStringTag]:"Buffer"}),isBuffer:(o)=>o&&o[Symbol.toStringTag]==="Buffer"}`;
     }
   },
 };
